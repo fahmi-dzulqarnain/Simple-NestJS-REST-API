@@ -32,7 +32,7 @@ export class DatabaseController {
     }
 
     @Delete(':id')
-    deleteRecord(@Param('id') id: number, @Body() data: Partial<FileKitaDTO>) {
-        return this.service.deleteRecord(id, data)
+    deleteRecord(@Param('id') id: number) {
+        return this.service.deleteRecord(id)
     }
 }

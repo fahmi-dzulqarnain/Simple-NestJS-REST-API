@@ -41,11 +41,11 @@ export class DatabaseService {
         })
     }
 
-    async deleteRecord(id: number, data: Partial<FileKitaDTO>) {
+    async deleteRecord(id: number) {
         await this.filekitaRepository.delete({id})
         return {
             deleted: true,
-            message: "Success"
+            message: `The data with id ${id} has been deleted`
         }
     }
 }
