@@ -1,12 +1,17 @@
 import 'dotenv/config'
-import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { env } from 'process';
 import { AppModule } from './app.module';
+import { join } from 'path';
+import { NestExpressApplication } from '@nestjs/platform-express';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
-  Logger.log(`Ini adalah pesan Log ${env.PORT}`, "Percobaan")
+  const app = await NestFactory.create<NestExpressApplication>(AppModule);
+  
+  app.useStaticAssets(join(__dirname, '..', 'public'))
+  app.setBaseViewsDir(join(__dirname, '..', 'views'))
+  app.setViewEngine('hbs')
+
   await app.listen(env.PORT);
 }
 bootstrap();

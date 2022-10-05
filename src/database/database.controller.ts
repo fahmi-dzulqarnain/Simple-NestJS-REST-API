@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, Render } from '@nestjs/common';
 import { FileKitaDTO } from './database.entity';
 import { DatabaseService } from './database.service';
 
@@ -6,14 +6,15 @@ import { DatabaseService } from './database.service';
 export class DatabaseController {
     constructor(private service: DatabaseService) { }
 
-    @Get()
-    lihatOutput() {
-        return this.service.showAll()
+    @Get('jsonData')
+    async lihatOutput() {
+        return { data: await this.service.showAll() }
     }
 
-    @Get('service')
-    lihatSemua() {
-        return this.service.lihatSemua()
+    @Get()
+    @Render('index')
+    root() {
+        return { title: "Tabel Data", message: "Hello World!" }
     }
 
     @Post()

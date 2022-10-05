@@ -6,7 +6,7 @@ export class HttpErrorFilter implements ExceptionFilter {
         const context = host.switchToHttp()
         const request = context.getRequest()
         const response = context.getResponse()
-        const status = exception.getStatus()
+        const status = exception.getStatus
 
         const error = {
             code: status,

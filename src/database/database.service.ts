@@ -15,7 +15,7 @@ export class DatabaseService {
     }
 
     async createRecord(data: FileKitaDTO) {
-        const newData = await this.filekitaRepository.create(data)
+        const newData = this.filekitaRepository.create(data)
         await this.filekitaRepository.save(newData)
         return newData
     }
